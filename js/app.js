@@ -1,11 +1,14 @@
 var playerText = document.getElementById('playerText');
 var referenceText = document.getElementById('referenceText').innerHTML;
+var timer = document.getElementById('timer');
+document.getElementById("resetButton").addEventListener("click", reset); 
 playerText.maxLength = referenceText.length;
-playerText.value = '';
 
 var startingTime;
+var writingTimer
 var characterCounter = 0;
-var timer = document.getElementById('timer');
+
+reset();
 
 playerText.addEventListener("keyup", checkInput);
 
@@ -32,4 +35,9 @@ function timerRunning(){
 		min + ":" + 
         (sec > 9 ? sec : "0" + sec) + "." + 
         (ms > 99 ? ms : ms > 9 ? "0" + ms : "00" + ms);
+}
+function reset(){
+	stopTimer();
+	timer.innerHTML = "0:00.000";
+	playerText.value = '';
 }
