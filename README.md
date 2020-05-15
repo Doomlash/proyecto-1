@@ -5,3 +5,4 @@ Se te presenta un parrafo predefinido, el cual tiene que ser escrito sin ningun 
 Miestras se esta escribiendo un temporizador corre. Este comienza cuando se escribe el primer caracter y finaliza cuando el parrafo se escribió por completo
 Como estadistica extra, La pagina tambien muestra en tiempo real las palabras por minuto. En este caso, una palabra son 5 caracteres.
 Link: https://doomlash.github.io/
+Hecho con bootstrap 4
