@@ -8,3 +8,5 @@ Como estadistica extra, La pagina tambien muestra en tiempo real las palabras po
 Link: https://doomlash.github.io/
 
 Hecho con bootstrap 4
+
+Video de presentación: https://youtu.be/3uf3QeQJOE4 
