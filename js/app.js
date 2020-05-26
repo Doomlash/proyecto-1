@@ -1,12 +1,8 @@
 //seteando las variables y los elementos
 var playerText = document.getElementById("playerText");
-document.getElementById("referenceText").innerHTML="Imaqtpie, I've noticed in Korea they tend to use a mix of magic and physical damage on Kog Maw. Meanwhile you seem to be using mostly true damage. Which playstyle is better?";
 var referenceText = document.getElementById("referenceText").innerHTML;
 var timer = document.getElementById("timer");
 var ppm = document.getElementById("ppm");
-document.getElementById("resetButton").addEventListener("click", reset); 
-document.getElementById("nightButton").addEventListener("click", changeTheme); 
-playerText.maxLength = referenceText.length;
 var startingTime;
 var writingTimer;
 var bgColor = "white"
@@ -14,7 +10,17 @@ var fontColor = "black"
 reset();
 playerText.addEventListener("keyup", checkInput);
 
+initBotones();
+checkForNightTheme();
+initReferenceText();
+setReferenceText("avatarText");
+
 //funciones
+function initBotones(){
+	document.getElementById("resetButton").addEventListener("click", reset); 
+	document.getElementById("nightButton").addEventListener("click", changeTheme); 
+}
+
 function checkInput(keyPressed){
 	var playerTextContent = playerText.value;
 	if (playerTextContent.length != 0 && timer.innerHTML == "0:00.000"){startTimer();}
@@ -61,6 +67,12 @@ function timerRunning(){
 }
 
 function changeTheme(){
+	if(bgColor=="white"){
+		localStorage.nightTheme="1";
+	}
+	else{
+		localStorage.nightTheme="0";
+	}
 	//cambio de los colores
 	var auxForSwitch = bgColor;
 	bgColor = fontColor;
@@ -75,4 +87,37 @@ function changeTheme(){
 	document.getElementById("tiempoHeader").style.color=fontColor;
 	document.getElementById("ppmHeader").style.color=fontColor;
 }
+
+function checkForNightTheme(){
+	if(localStorage.nightTheme){
+		if(localStorage.nightTheme == "1"){
+			changeTheme();
+		}
+	}
+	else{
+		localStorage.nightTheme = "0";
+	}
+}
+
+function initReferenceText(){
+	if(!localStorage.testText){
+		localStorage.testText="test, test.";
+	}
+	if(!localStorage.avatarText){
+		localStorage.avatarText="Agua, tierra, fuego, aire. Hace muchos años, las cuatro naciones vivían en armonía, pero todo cambió cuando la Nación del Fuego atacó. Solo el Avatar, maestro de los cuatro elementos, podía detenerlos. Pero cuando el mundo más lo necesitaba, desapareció.";
+	}
+	if(!localStorage.trabalenguasText){
+		localStorage.trabalenguasText = "Tres tristes tigres tragaban trigo en un trigal, sentados tras un trigal, en tres tristes trastos, tragaban trigo, tres tristes tigres.";
+	}
+	if(!localStorage.imaqtpieText){
+		localStorage.imaqtpieText = "Imaqtpie, I've noticed in Korea they tend to use a mix of magic and physical damage on Kog Maw. Meanwhile you seem to be using mostly true damage. Which playstyle is better?";
+	}
+}
+
+function setReferenceText(name){
+	document.getElementById("referenceText").innerHTML=localStorage.getItem(name);
+	playerText.maxLength = referenceText.length;
+}
+
+
 //Imaqtpie, I've noticed in Korea they tend to use a mix of magic and physical damage on Kog Maw. Meanwhile you seem to be using mostly true damage. Which playstyle is better?
