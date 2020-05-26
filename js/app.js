@@ -65,7 +65,11 @@ function initSelector(){
 }
 
 function initPlayerText(){
-	playerText.addEventListener("keyup", checkInput);
+	playerText.disabled = true;
+	playerText.addEventListener("keypress", function(){
+		var playerTextContent = playerText.value;
+		if (timer.innerHTML == "0:00.000"){startTimer();}
+	});
 }
 
 function initReferenceText(){
@@ -112,11 +116,11 @@ function changeTheme(){
 	playerText.style.backgroundColor = bgColor;
 	document.getElementById("tiempoHeader").style.color = fontColor;
 	document.getElementById("ppmHeader").style.color = fontColor;
+	document.getElementById("bestPpm").style.color = fontColor;
+	document.getElementById("lastPpm").style.color = fontColor;
 }
 
-function checkInput(keyPressed){
-	var playerTextContent = playerText.value;
-	if (playerTextContent.length != 0 && timer.innerHTML == "0:00.000"){startTimer();}
+function checkInput(){
 	testError();
 	if (playerText.value == referenceText.innerHTML){
 		stopTimer();
@@ -149,6 +153,7 @@ function stopTimer(){
 }
 
 function timerRunning(){
+	
 	var currentTime = new Date();
 	var timeElapsed = new Date(currentTime - startingTime);
 	var min = timeElapsed.getUTCMinutes();
@@ -161,4 +166,5 @@ function timerRunning(){
 	var playerTextContent = playerText.value;
 	var ppmValue = 60*(playerTextContent.length / (Math.round(ms/200) + sec*5 + min*60*5 ))
 	ppm.innerHTML = (Math.round(ppmValue*100)/100).toFixed(2);
+	checkInput();
 }
