@@ -38,11 +38,25 @@
 		<div class="col"></div>
 		<div class="col-8">
 			<div  class="p-3 text-black">
+				<div class="form-group">
+					<select class="form-control" id="textSelector">
+					  <option value="default">Elija un texto...</option>
+					  <option value="avatarText">Opening de Avatar</option>
+					  <option value="trabalenguasText">Trabalenguas</option>
+					  <option value="copypastaText">Copypasta de twitch.tv</option>
+					  <option value="testText">Texto de testeo</option>
+					</select>
+				</div>
 				<p id="referenceText"></p>
-				<textarea id="playerText" rows="3" cols="90" wrap="soft"></textarea>
+				<p></p>
+				<textarea id="playerText" rows="3" cols="90" wrap="soft" disabled></textarea>
 			</div>
 		</div>
-		<div class="col"></div>
+		<div class="col">
+			<h4 id="bestPpm" class="text-left"></h4>
+			<h4 id="lastPpm" class="text-left"></h4>
+			<button id="scoreButton" type="button" class="btn btn-primary">Borrar puntuaciones</button>
+		</div>
 	  </div>
 	  <div class="row">
 		<div class="col"></div>
